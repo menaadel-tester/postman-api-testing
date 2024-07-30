@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "c6c522c9-9574-42a8-8d5b-7b326ca6bec1",
+		"name": "QACartAPICourse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31581749"
+	},
+	"item": [
+		{
+			"name": "Add new Course",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"var courseId = jsonData.id;\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"CourseID\", courseId);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n        \"name\": \"C#\",\r\n        \"description\": \"Full appium course from zero with Arabic langauage\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{qacarturl}}/Courses",
+					"host": [
+						"{{qacarturl}}"
+					],
+					"path": [
+						"Courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specific Courses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{qacarturl}}/Courses/{{CourseID}}",
+					"host": [
+						"{{qacarturl}}"
+					],
+					"path": [
+						"Courses",
+						"{{CourseID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Courses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"name\": \"Java for Tester \",\r\n      \"description\": \"Full Java Course for Tester from Zero to hero\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{qacarturl}}/Courses/{{CourseID}}",
+					"host": [
+						"{{qacarturl}}"
+					],
+					"path": [
+						"Courses",
+						"{{CourseID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete courses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{qacarturl}}/Courses/{{CourseID}}",
+					"host": [
+						"{{qacarturl}}"
+					],
+					"path": [
+						"Courses",
+						"{{CourseID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Courses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check The API Response Code\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// test case to make Sure the Response include String \r",
+							"\r",
+							"pm.test(\"Check the Response include specific String\", function () {\r",
+							"\r",
+							"\r",
+							"    pm.expect(pm.response.text()).to.include(\"palywright\");\r",
+							"});\r",
+							"\r",
+							"// test case to test the response time \r",
+							"\r",
+							"pm.test(\"Check the Response time is less than 100 ms\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.responseTime).to.below(100);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"// test case to validate the Key & value \r",
+							"\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"check the course name\", function () {\r",
+							"\r",
+							"    pm.expect(jsonData[1].name).to.eql(\"Selenium Java\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{qacarturl}}/Courses",
+					"host": [
+						"{{qacarturl}}"
+					],
+					"path": [
+						"Courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"olivier@mail.com\",\r\n  \"password\": \"bestPassw0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{qacarturl}}/signup",
+					"host": [
+						"{{qacarturl}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
